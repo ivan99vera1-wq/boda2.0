@@ -1,483 +1,677 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Boda · Xiomara & Ivan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-          --cream: #fdf9f2;
-          --warm: #f0e8d8;
-          --gold: #c9a96e;
-          --gold-light: #e8d5b0;
-          --rose: #c4867a;
-          --rose-light: #e8c4be;
-          --ocean: #4a8fa8;
-          --ocean-deep: #1e4d5e;
-          --ocean-light: #a8d4e0;
-          --ocean-mid: #2d7a95;
-          --sand: #d4b896;
-          --dark: #0a1e2c;
-          --dark-mid: #122f40;
-          --mid: #4a5a62;
-          --light-text: #8a9a9e;
-          --glass: rgba(255,255,255,0.10);
-          --glass-strong: rgba(255,255,255,0.18);
-          --glass-border: rgba(255,255,255,0.18);
-          --radius: 16px;
-          --radius-sm: 10px;
-          --shadow: 0 8px 40px rgba(10,30,44,0.45);
-          --shadow-soft: 0 4px 20px rgba(10,30,44,0.25);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nuestra Boda · Xiomara &amp; Ivan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════════ */
+    :root {
+      --cream:        #fdf9f2;
+      --warm:         #f0e8d8;
+      --gold:         #c9a96e;
+      --gold-lt:      #e8d5b0;
+      --gold-dk:      #a07840;
+      --rose:         #c4867a;
+      --rose-lt:      #e8c4be;
+      --ocean:        #4a8fa8;
+      --ocean-deep:   #1e4d5e;
+      --ocean-mid:    #2d7a95;
+      --ocean-lt:     #a8d4e0;
+      --dark:         #06111e;
+      --dark-mid:     #0d2030;
+      --dark-alt:     #122f40;
+      --mid:          #4a5a62;
+      --light-text:   #8a9a9e;
+      --glass:        rgba(255,255,255,0.08);
+      --glass-md:     rgba(255,255,255,0.12);
+      --glass-bdr:    rgba(255,255,255,0.15);
+      --radius:       18px;
+      --radius-sm:    11px;
+      --shadow:       0 8px 40px rgba(6,17,30,0.5);
+      --shadow-sm:    0 4px 20px rgba(6,17,30,0.28);
+      --transition:   0.28s cubic-bezier(0.4,0,0.2,1);
+    }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
+    /* ═══════════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-        /* ─── BACKGROUND ─── */
-        body {
-          font-family: 'Jost', sans-serif;
-          background: var(--dark);
-          color: var(--cream);
-          min-height: 100vh;
-          font-weight: 300;
-          overflow-x: hidden;
-        }
+    html { scroll-behavior: smooth; }
 
-        .bg-ocean {
-          position: fixed; inset: 0; z-index: -3;
-          background:
-            radial-gradient(ellipse at 25% 45%, rgba(74,143,168,0.18) 0%, transparent 60%),
-            radial-gradient(ellipse at 75% 20%, rgba(30,77,94,0.22) 0%, transparent 55%),
-            linear-gradient(180deg, #07182a 0%, #0a1e2c 35%, #0d2535 70%, #122f40 100%);
-        }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      min-height: 100dvh;
+      font-weight: 300;
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
-        .bg-photo {
-          position: fixed; inset: 0; z-index: -2;
-          background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80') center/cover no-repeat;
-          opacity: 0.32;
-          will-change: transform;
-        }
+    /* ═══════════════════════════════════════════════
+       BACKGROUND LAYERS
+    ═══════════════════════════════════════════════ */
+    .bg-base {
+      position: fixed; inset: 0; z-index: -4;
+      background:
+        radial-gradient(ellipse 70% 55% at 25% 40%, rgba(45,122,149,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(30,77,94,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 60% 85%, rgba(74,143,168,0.12) 0%, transparent 55%),
+        linear-gradient(180deg, #06111e 0%, #0a1c2e 30%, #0d2030 65%, #122f40 100%);
+    }
 
-        .bg-overlay {
-          position: fixed; inset: 0; z-index: -1;
-          background: linear-gradient(180deg,
-            rgba(7,24,42,0.72) 0%,
-            rgba(10,30,44,0.52) 40%,
-            rgba(10,30,44,0.48) 70%,
-            rgba(10,30,44,0.68) 100%);
-        }
+    .bg-photo {
+      position: fixed; inset: 0; z-index: -3;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=75') center 30%/cover no-repeat;
+      opacity: 0.28;
+      will-change: transform;
+    }
 
-        /* ─── BUBBLES ─── */
-        #bubbles {
-          position: fixed; inset: 0;
-          pointer-events: none; overflow: hidden;
-          z-index: 0;
-        }
+    .bg-vignette {
+      position: fixed; inset: 0; z-index: -2;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 50%, transparent 30%, rgba(6,17,30,0.6) 100%),
+        linear-gradient(180deg, rgba(6,17,30,0.65) 0%, rgba(10,28,46,0.4) 35%, rgba(10,28,46,0.38) 70%, rgba(10,28,46,0.72) 100%);
+    }
 
-        .bubble {
-          position: absolute; border-radius: 50%;
-          background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(168,212,224,0.05));
-          border: 1px solid rgba(168,212,224,0.18);
-          animation: floatUp linear infinite;
-        }
+    /* ═══════════════════════════════════════════════
+       BUBBLES
+    ═══════════════════════════════════════════════ */
+    #bubbles {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; overflow: hidden;
+    }
 
-        @keyframes floatUp {
-          0%   { transform: translateY(110vh) scale(0); opacity: 0; }
-          5%   { opacity: 0.8; transform: translateY(100vh) scale(1); }
-          95%  { opacity: 0.3; }
-          100% { transform: translateY(-10vh) translateX(var(--drift,0px)) scale(1.1); opacity: 0; }
-        }
+    .bubble {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.22), rgba(168,212,224,0.04));
+      border: 1px solid rgba(168,212,224,0.16);
+      animation: floatUp linear infinite;
+      will-change: transform;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) scale(0) translateX(0px);   opacity: 0; }
+      5%   { opacity: 0.75; transform: translateY(100vh) scale(1) translateX(0px); }
+      95%  { opacity: 0.25; }
+      100% { transform: translateY(-10vh) scale(1.1) translateX(var(--drift,0px)); opacity: 0; }
+    }
 
-        /* ─── WAVES ─── */
-        .waves {
-          position: fixed; bottom: 0; left: -50%; right: -50%;
-          height: 160px; z-index: 1;
-          pointer-events: none; overflow: hidden;
-        }
+    /* ═══════════════════════════════════════════════
+       ANIMATED WAVES
+    ═══════════════════════════════════════════════ */
+    .wave-scene {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 200px; z-index: 1; pointer-events: none; overflow: hidden;
+    }
 
-        .wave {
-          position: absolute; bottom: 0;
-          width: 200%; height: 100%;
-        }
+    .wave-layer {
+      position: absolute; bottom: 0; left: -100%;
+      width: 300%; height: 100%;
+      animation: waveDrift linear infinite;
+      transform-origin: center bottom;
+    }
+    .wave-layer svg { width: 100%; height: 100%; }
 
-        .wave svg { width:100%; height:100%; }
-        .wave-1 { animation: waveSlide 9s linear infinite; opacity: 0.18; }
-        .wave-2 { animation: waveSlide 14s linear infinite reverse; opacity: 0.12; bottom: 6px; }
-        .wave-3 { animation: waveSlide 7s linear infinite; opacity: 0.08; bottom: 12px; }
+    .wave-layer:nth-child(1) { animation-duration: 10s; opacity: 0.55; bottom: 0px; }
+    .wave-layer:nth-child(2) { animation-duration: 16s; opacity: 0.38; bottom: 6px; animation-direction: reverse; }
+    .wave-layer:nth-child(3) { animation-duration: 8s;  opacity: 0.25; bottom: 14px; }
+    .wave-layer:nth-child(4) { animation-duration: 22s; opacity: 0.15; bottom: 24px; animation-direction: reverse; }
 
-        @keyframes waveSlide {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(50%); }
-        }
+    @keyframes waveDrift {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(33.33%); }
+    }
 
-        /* ─── SYNC ─── */
-        #sync {
-          position: fixed; top: 1.1rem; right: 1.1rem;
-          font-size: 0.68rem; letter-spacing: 0.14em;
-          padding: 0.38rem 1rem; border-radius: 20px;
-          z-index: 1000; opacity: 0;
-          transition: opacity 0.4s; backdrop-filter: blur(14px);
-          border: 1px solid transparent;
-          font-family: 'Jost', sans-serif; text-transform: uppercase;
-        }
-        #sync.show { opacity: 1; }
-        #sync.saving { background: rgba(201,169,110,0.18); color: #e8d5b0; border-color: rgba(201,169,110,0.35); }
-        #sync.saved  { background: rgba(76,175,80,0.18);  color: #a8e6ab; border-color: rgba(76,175,80,0.3); }
-        #sync.error  { background: rgba(196,134,122,0.18); color: #e8c4be; border-color: rgba(196,134,122,0.3); }
+    /* ═══════════════════════════════════════════════
+       SYNC INDICATOR
+    ═══════════════════════════════════════════════ */
+    #sync {
+      position: fixed; top: max(1rem, env(safe-area-inset-top)); right: 1rem;
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 20px; z-index: 9000;
+      opacity: 0; transition: opacity 0.35s; backdrop-filter: blur(16px);
+      border: 1px solid transparent; font-family: 'Jost', sans-serif;
+    }
+    #sync.show   { opacity: 1; }
+    #sync.saving { background: rgba(201,169,110,0.2); color: #e8d5b0; border-color: rgba(201,169,110,0.4); }
+    #sync.saved  { background: rgba(76,175,80,0.18);  color: #a8e6ab;  border-color: rgba(76,175,80,0.32); }
+    #sync.error  { background: rgba(196,134,122,0.2); color: #e8c4be;  border-color: rgba(196,134,122,0.4); }
 
-        /* ─── HEADER ─── */
-        header {
-          position: relative; min-height: 100vh;
-          display: flex; flex-direction: column;
-          align-items: center; justify-content: center;
-          text-align: center; padding: 4rem 2rem 11rem;
-          overflow: hidden; z-index: 2;
-        }
+    /* ═══════════════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════════════ */
+    header {
+      position: relative;
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: clamp(5rem,10vh,8rem) 1.5rem clamp(9rem,18vh,14rem);
+      overflow: hidden; z-index: 2;
+    }
 
-        #sparkles { position: absolute; inset: 0; pointer-events: none; }
+    #sparkles { position: absolute; inset: 0; pointer-events: none; }
 
-        .sparkle {
-          position: absolute; color: var(--gold);
-          animation: twinkle ease-in-out infinite; opacity: 0;
-        }
-        @keyframes twinkle {
-          0%,100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
-          50%      { opacity: 0.65; transform: scale(1) rotate(15deg); }
-        }
+    .sparkle {
+      position: absolute; color: var(--gold);
+      animation: twinkle ease-in-out infinite; opacity: 0;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0;    transform: scale(0.4) rotate(0deg); }
+      50%     { opacity: 0.6;  transform: scale(1)   rotate(18deg); }
+    }
 
-        .h-ornament {
-          font-family: 'Cormorant Garamond', serif;
-          font-style: italic; font-size: 0.78rem;
-          letter-spacing: 0.5em; color: var(--ocean-light);
-          opacity: 0.75; text-transform: uppercase;
-          margin-bottom: 1.5rem;
-          animation: fadeDown 1s ease both 0.2s;
-        }
+    .h-ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(0.7rem, 2.2vw, 0.82rem);
+      letter-spacing: 0.45em; color: var(--ocean-lt);
+      opacity: 0.72; text-transform: uppercase;
+      margin-bottom: 1.4rem;
+      animation: fadeUp 1s ease both 0.2s;
+    }
 
-        .hero-title {
-          font-family: 'Great Vibes', cursive;
-          font-size: clamp(4.5rem, 13vw, 9rem);
-          line-height: 1; color: var(--cream);
-          text-shadow: 0 0 80px rgba(201,169,110,0.35), 0 2px 12px rgba(0,0,0,0.5);
-          animation: fadeDown 1.1s ease both 0.4s;
-        }
+    .hero-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(4rem, 15vw, 9.5rem);
+      line-height: 1; color: var(--cream);
+      text-shadow: 0 0 80px rgba(201,169,110,0.3), 0 3px 18px rgba(0,0,0,0.6);
+      animation: fadeUp 1.1s ease both 0.38s;
+    }
+    .hero-title .glow {
+      background: linear-gradient(135deg, #c9a96e 0%, #f5e4b8 48%, #c9a96e 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 22px rgba(201,169,110,0.55));
+    }
 
-        .hero-title .glow {
-          background: linear-gradient(135deg, #c9a96e 0%, #f0ddb0 50%, #c9a96e 100%);
-          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-          background-clip: text;
-          filter: drop-shadow(0 0 18px rgba(201,169,110,0.45));
-        }
+    .h-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 4.5vw, 2.3rem);
+      color: var(--gold-lt); font-weight: 300;
+      letter-spacing: 0.12em; margin-top: 1rem;
+      animation: fadeUp 1.1s ease both 0.56s;
+    }
+    .h-names .amp {
+      color: var(--ocean-lt); font-style: italic;
+      margin: 0 0.85rem; font-size: 1.4em;
+    }
 
-        .h-names {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.4rem, 4vw, 2.2rem);
-          color: var(--gold-light); font-weight: 300;
-          letter-spacing: 0.13em; margin-top: 1rem;
-          animation: fadeDown 1.1s ease both 0.6s;
-        }
-        .h-names .amp {
-          color: var(--ocean-light); font-style: italic;
-          margin: 0 0.9rem; font-size: 1.45em;
-        }
+    .h-sub {
+      margin-top: 0.7rem; color: var(--ocean-lt);
+      font-size: clamp(0.62rem, 2vw, 0.72rem);
+      letter-spacing: 0.4em; text-transform: uppercase;
+      opacity: 0.55; animation: fadeUp 1.1s ease both 0.72s;
+    }
 
-        .h-sub {
-          margin-top: 0.8rem; color: var(--ocean-light);
-          font-size: 0.7rem; letter-spacing: 0.42em;
-          text-transform: uppercase; opacity: 0.58;
-          animation: fadeDown 1.1s ease both 0.75s;
-        }
+    .h-divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.8rem 0 1.4rem;
+      animation: fadeUp 1.1s ease both 0.85s;
+    }
+    .h-divider::before, .h-divider::after {
+      content: ''; flex: 1; height: 1px; max-width: 120px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.4), transparent);
+    }
+    .h-divider span { color: var(--gold); font-size: 0.75rem; opacity: 0.65; letter-spacing: 0.3em; }
 
-        .ornament-row {
-          display: flex; align-items: center; gap: 1rem;
-          margin: 1.8rem 0 1.3rem;
-          animation: fadeDown 1.1s ease both 0.85s;
-        }
-        .ornament-row::before, .ornament-row::after {
-          content: ''; flex: 1; height: 1px; max-width: 130px;
-          background: linear-gradient(to right, transparent, rgba(201,169,110,0.45), transparent);
-        }
-        .ornament-row span { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.3em; opacity: 0.65; }
+    .scroll-hint {
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase;
+      color: rgba(253,249,242,0.45); cursor: pointer;
+      animation: fadeUp 1.3s ease both 1s;
+      transition: color var(--transition); touch-action: manipulation;
+      padding: 1rem;
+    }
+    .scroll-hint:hover { color: var(--gold); }
 
-        /* ─── INPUTS / BUTTONS ─── */
-        .glass-input {
-          padding: 0.7rem 1rem; border: 1px solid rgba(255,255,255,0.14);
-          border-radius: var(--radius-sm); font-family: 'Jost', sans-serif;
-          font-size: 0.85rem; background: rgba(255,255,255,0.08);
-          color: var(--cream); outline: none; transition: all 0.25s;
-        }
-        .glass-input::placeholder { color: rgba(138,154,158,0.6); }
-        .glass-input:focus { border-color: rgba(201,169,110,0.5); background: rgba(255,255,255,0.12); box-shadow: 0 0 0 3px rgba(201,169,110,0.1); }
+    .scroll-arrow {
+      width: 20px; height: 20px; border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg); animation: arrowBounce 1.8s ease-in-out infinite;
+    }
+    @keyframes arrowBounce {
+      0%,100% { transform: rotate(45deg) translate(0,0); opacity: 0.5; }
+      50%      { transform: rotate(45deg) translate(4px,4px); opacity: 1; }
+    }
 
-        .guest-controls { display: flex; gap: 0.7rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-        .guest-name-input { flex: 1; min-width: 140px; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
-        .guest-stats { display: flex; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-        .stat-pill {
-          display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem;
-          color: rgba(253,249,242,0.68); padding: 0.3rem 0.85rem;
-          background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
-        }
-        .status-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
-        .dot-confirmado { background: #4caf50; box-shadow: 0 0 6px rgba(76,175,80,0.5); }
-        .dot-pendiente  { background: #ffc107; box-shadow: 0 0 6px rgba(255,193,7,0.5); }
-        .dot-declinado  { background: #ef5350; box-shadow: 0 0 6px rgba(239,83,80,0.5); }
+    /* ═══════════════════════════════════════════════
+       CONTAINER & LAYOUT
+    ═══════════════════════════════════════════════ */
+    .container {
+      position: relative; z-index: 3;
+      max-width: 780px; margin: 0 auto;
+      padding: 2rem 1rem clamp(12rem,25vh,18rem);
+    }
+    @media (min-width: 600px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 900px) { .container { padding-left: 2rem; padding-right: 2rem; } }
 
-        .btn {
-          padding: 0.7rem 1.5rem;
-          background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
-          color: var(--cream); border: none; border-radius: var(--radius-sm);
-          font-family: 'Jost', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em;
-          text-transform: uppercase; cursor: pointer;
-          transition: all 0.25s ease; box-shadow: 0 4px 18px rgba(74,143,168,0.3);
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(74,143,168,0.45); background: linear-gradient(135deg, var(--ocean-mid), var(--ocean)); }
-        .btn:active { transform: translateY(0); }
+    /* ═══════════════════════════════════════════════
+       PROGRESS BAR
+    ═══════════════════════════════════════════════ */
+    .progress-wrap {
+      background: var(--glass); backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-bdr); border-radius: var(--radius);
+      padding: 1.1rem 1.4rem 1.2rem;
+      margin-bottom: 1.2rem; box-shadow: var(--shadow-sm);
+      animation: fadeUp 0.7s ease both 0.1s;
+    }
+    .progress-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.7rem;
+    }
+    .progress-text {
+      font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--ocean-lt); opacity: 0.7;
+    }
+    .progress-pct {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      color: var(--gold); font-weight: 400;
+    }
+    .progress-track {
+      height: 4px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 4px; transition: width 0.7s cubic-bezier(0.34,1.56,0.64,1);
+      background: linear-gradient(90deg, var(--ocean-mid), var(--gold), var(--rose));
+      background-size: 200% 100%; animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer { 0%,100% { background-position:0% 0%; } 50% { background-position:100% 0%; } }
 
-        .btn-sm {
-          padding: 0.28rem 0.75rem; font-size: 0.68rem; background: transparent;
-          color: var(--rose-light); border: 1px solid rgba(196,134,122,0.3);
-          border-radius: 4px; cursor: pointer; font-family: 'Jost', sans-serif;
-          transition: all 0.2s; letter-spacing: 0.04em;
-        }
-        .btn-sm:hover { background: rgba(196,134,122,0.2); border-color: rgba(196,134,122,0.55); }
+    /* ═══════════════════════════════════════════════
+       SECTION DIVIDER
+    ═══════════════════════════════════════════════ */
+    .divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+    }
+    .divider span { font-size: 1rem; opacity: 0.25; }
 
-        /* ─── TABLE ─── */
-        .guest-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        .guest-table th {
-          text-align: left; padding: 0.65rem 0.9rem; font-weight: 400;
-          font-size: 0.64rem; letter-spacing: 0.28em; text-transform: uppercase;
-          color: var(--ocean-light); opacity: 0.65; border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .guest-table td { padding: 0.75rem 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(253,249,242,0.72); vertical-align: middle; }
-        .guest-table tbody tr { transition: background 0.2s; }
-        .guest-table tbody tr:hover td { background: rgba(74,143,168,0.07); }
+    /* ═══════════════════════════════════════════════
+       SECTION ACCORDION
+    ═══════════════════════════════════════════════ */
+    .section {
+      background: var(--glass); backdrop-filter: blur(22px);
+      border: 1px solid var(--glass-bdr); border-radius: var(--radius);
+      margin-bottom: 0.9rem; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color var(--transition);
+    }
+    .section.visible { opacity: 1; transform: translateY(0); }
+    .section:hover { border-color: rgba(255,255,255,0.22); }
 
-        /* ─── BUDGET ─── */
-        .budget-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    /* ─ HEADER ─ */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.2rem;
+      cursor: pointer; user-select: none; touch-action: manipulation;
+      min-height: 56px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .section-header:hover .section-name { color: var(--gold-lt); }
+    .section-header:active { background: rgba(255,255,255,0.04); }
 
-        .budget-card {
-          background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
-          border-radius: var(--radius-sm); padding: 1.1rem 1.2rem;
-          transition: all 0.26s ease;
-        }
-        .budget-card:hover { background: rgba(255,255,255,0.11); border-color: rgba(201,169,110,0.3); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(10,30,44,0.35); }
+    .section-title {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
 
-        .budget-cat { font-size: 0.63rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ocean-light); opacity: 0.65; margin-bottom: 0.55rem; }
-        .budget-amount {
-          font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--cream);
-          cursor: pointer; border-bottom: 1px dashed transparent; transition: all 0.2s; display: inline-block; padding-bottom: 1px;
-        }
-        .budget-amount:hover { border-bottom-color: rgba(201,169,110,0.5); color: var(--gold-light); }
-        .budget-amount-edit {
-          font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--cream);
-          border: 1px solid var(--gold); border-radius: 4px; padding: 0.1rem 0.5rem;
-          width: 150px; outline: none; background: rgba(201,169,110,0.12);
-        }
-        .budget-spent-row { display: flex; align-items: baseline; gap: 0.4rem; margin: 0.4rem 0; }
-        .budget-spent-label { font-size: 0.67rem; color: var(--ocean-light); opacity: 0.65; }
-        .budget-spent-val { font-size: 0.88rem; color: var(--ocean-light); cursor: pointer; border-bottom: 1px dashed transparent; transition: all 0.2s; }
-        .budget-spent-val:hover { border-bottom-color: rgba(74,143,168,0.5); opacity: 1; }
-        .budget-bar { margin-top: 0.6rem; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
-        .budget-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ocean-mid), var(--gold)); transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-        .budget-fill.over { background: linear-gradient(90deg, var(--rose), #e8a0a0); }
-        .budget-sub { font-size: 0.65rem; color: rgba(138,154,158,0.6); margin-top: 0.35rem; }
-        .budget-total {
-          display: flex; justify-content: space-between; align-items: center;
-          padding: 1.2rem 1.5rem; background: rgba(10,30,44,0.55); backdrop-filter: blur(10px);
-          border-radius: var(--radius-sm); border: 1px solid rgba(201,169,110,0.22); margin-top: 0.3rem;
-        }
-        .budget-total-label { font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ocean-light); opacity: 0.75; }
-        .budget-total-sub { font-size: 0.58rem; color: var(--ocean-light); opacity: 0.45; letter-spacing: 0.06em; margin-top: 0.2rem; }
-        .budget-total-amt { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); text-shadow: 0 0 20px rgba(201,169,110,0.3); }
-        .budget-hint { font-size: 0.63rem; color: rgba(138,154,158,0.5); margin-top: 0.85rem; font-style: italic; }
+    .section-icon {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.9rem; color: var(--gold);
+      transition: background var(--transition);
+    }
+    .section-header:hover .section-icon { background: rgba(201,169,110,0.15); }
 
-        /* ─── TIMELINE ─── */
-        .timeline { position: relative; padding-left: 2rem; }
-        .timeline::before {
-          content: ''; position: absolute; left: 6px; top: 5px; bottom: 0; width: 1px;
-          background: linear-gradient(to bottom, var(--ocean), rgba(201,169,110,0.35), transparent);
-        }
-        .tl-item { position: relative; margin-bottom: 1.8rem; }
-        .tl-dot {
-          position: absolute; left: -2.35rem; top: 0.28rem;
-          width: 12px; height: 12px; border-radius: 50%;
-          border: 2px solid rgba(74,143,168,0.55); background: rgba(10,30,44,0.8); transition: all 0.3s;
-        }
-        .tl-dot.done { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(201,169,110,0.55); }
-        .tl-dot.today { background: var(--rose); border-color: var(--rose); animation: todayPulse 2.2s ease-in-out infinite; }
-        @keyframes todayPulse {
-          0%,100% { box-shadow: 0 0 0 3px rgba(196,134,122,0.2); }
-          50%      { box-shadow: 0 0 0 8px rgba(196,134,122,0.1), 0 0 18px rgba(196,134,122,0.3); }
-        }
-        .tl-time { font-size: 0.66rem; letter-spacing: 0.2em; color: var(--ocean-light); text-transform: uppercase; margin-bottom: 0.18rem; opacity: 0.72; }
-        .tl-title { font-size: 0.92rem; color: var(--cream); margin-bottom: 0.12rem; font-weight: 400; opacity: 0.9; }
-        .tl-title.done { opacity: 0.42; text-decoration: line-through; }
-        .tl-desc { font-size: 0.8rem; color: rgba(138,154,158,0.65); }
+    .section-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--cream); font-weight: 400;
+      transition: color var(--transition);
+    }
 
-        /* ─── NOTES ─── */
-        .notes-area {
-          width: 100%; min-height: 140px; padding: 1.1rem 1.2rem;
-          border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm);
-          font-family: 'Jost', sans-serif; font-size: 0.9rem; color: rgba(253,249,242,0.82);
-          background: rgba(255,255,255,0.06); outline: none; resize: vertical; line-height: 1.7;
-          transition: all 0.25s;
-        }
-        .notes-area::placeholder { color: rgba(138,154,158,0.45); font-style: italic; }
-        .notes-area:focus { border-color: rgba(74,143,168,0.4); background: rgba(255,255,255,0.09); box-shadow: 0 0 0 3px rgba(74,143,168,0.1); }
-        .notes-hint { font-size: 0.68rem; color: rgba(138,154,158,0.5); margin-top: 0.6rem; }
+    .section-right {
+      display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0;
+    }
 
-        /* ─── CHECKLIST / TASKS ─── */
-        .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    /* ─ BADGE ─ */
+    .section-badge {
+      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.22rem 0.75rem; border-radius: 20px; font-weight: 500;
+      background: rgba(255,255,255,0.08); color: var(--ocean-lt);
+      border: 1px solid rgba(255,255,255,0.12); white-space: nowrap;
+    }
+    .section-badge.warn { color: var(--rose-lt); background: rgba(196,134,122,0.15); border-color: rgba(196,134,122,0.3); }
+    .section-badge.done { color: #a8e6ab; background: rgba(76,175,80,0.15); border-color: rgba(76,175,80,0.3); }
 
-        .checklist li {
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.10);
-          border-radius: var(--radius-sm);
-          transition: all 0.25s ease;
-          overflow: hidden;
-        }
-        .checklist li:hover { background: rgba(255,255,255,0.09); border-color: rgba(201,169,110,0.22); }
-        .checklist li.checked { background: rgba(76,175,80,0.07); border-color: rgba(76,175,80,0.18); }
+    /* ─ CHEVRON ─ */
+    .chevron {
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem; color: var(--ocean-lt);
+      transition: transform var(--transition), background var(--transition);
+      flex-shrink: 0;
+    }
+    .chevron.open { transform: rotate(180deg); background: rgba(74,143,168,0.18); border-color: rgba(74,143,168,0.3); color: var(--ocean-lt); }
 
-        .task-row {
-          display: flex; align-items: center; gap: 0.75rem;
-          padding: 0.85rem 1.1rem; cursor: pointer;
-          user-select: none;
-        }
+    /* ─ BODY ─ */
+    .section-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .section-body.open { max-height: 4000px; }
 
-        .check-box {
-          width: 22px; height: 22px; flex-shrink: 0;
-          border: 1.5px solid rgba(74,143,168,0.5);
-          border-radius: 6px; display: flex; align-items: center; justify-content: center;
-          font-size: 0.75rem; color: var(--cream);
-          transition: all 0.22s ease; background: rgba(255,255,255,0.04);
-        }
-        .check-box.checked {
-          background: linear-gradient(135deg, #4caf50, #66bb6a);
-          border-color: #4caf50;
-          box-shadow: 0 0 10px rgba(76,175,80,0.4);
-        }
+    .section-body-inner {
+      padding: 0 1.2rem 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .section-body-inner > *:first-child { margin-top: 1rem; }
 
-        .item-text {
-          flex: 1; font-size: 0.88rem; color: rgba(253,249,242,0.85);
-          font-weight: 300; line-height: 1.35;
-        }
-        .checklist li.checked .item-text { opacity: 0.42; text-decoration: line-through; }
+    /* ═══════════════════════════════════════════════
+       CHECKLIST
+    ═══════════════════════════════════════════════ */
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 
-        .item-priority {
-          font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-          padding: 0.18rem 0.6rem; border-radius: 20px; font-weight: 500; flex-shrink: 0;
-        }
-        .p-Alta   { background: rgba(196,134,122,0.2); color: var(--rose-light); border: 1px solid rgba(196,134,122,0.3); }
-        .p-Media  { background: rgba(201,169,110,0.18); color: var(--gold-light); border: 1px solid rgba(201,169,110,0.28); }
-        .p-Baja   { background: rgba(74,143,168,0.18); color: var(--ocean-light); border: 1px solid rgba(74,143,168,0.25); }
+    .checklist li {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), border-color var(--transition);
+      overflow: hidden;
+    }
+    .checklist li:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); }
+    .checklist li.checked { background: rgba(76,175,80,0.07); border-color: rgba(76,175,80,0.18); }
 
-        .task-note-btn {
-          background: transparent; border: 1px solid rgba(255,255,255,0.13);
-          color: rgba(253,249,242,0.45); border-radius: 4px;
-          font-size: 0.68rem; padding: 0.22rem 0.65rem;
-          cursor: pointer; font-family: 'Jost', sans-serif;
-          transition: all 0.2s; flex-shrink: 0;
-          letter-spacing: 0.06em;
-        }
-        .task-note-btn:hover { background: rgba(255,255,255,0.09); color: var(--cream); border-color: rgba(255,255,255,0.28); }
-        .task-note-btn.has-note { color: var(--gold-light); border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.09); }
+    .task-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.8rem 1rem; cursor: pointer;
+      user-select: none; touch-action: manipulation;
+      min-height: 52px;
+    }
+    .task-row:active { background: rgba(255,255,255,0.04); }
 
-        .task-note-area {
-          max-height: 0; overflow: hidden;
-          transition: max-height 0.32s ease, border-top-color 0.3s;
-          border-top: 1px solid transparent;
-        }
-        .task-note-area.open {
-          max-height: 200px;
-          border-top-color: rgba(255,255,255,0.07);
-        }
-        .task-note-area textarea {
-          width: 100%; padding: 0.75rem 1.1rem; resize: none;
-          background: rgba(255,255,255,0.04); border: none; outline: none;
-          font-family: 'Jost', sans-serif; font-size: 0.82rem;
-          color: rgba(253,249,242,0.78); line-height: 1.55;
-          height: 72px; display: block;
-        }
-        .task-note-area textarea::placeholder { color: rgba(138,154,158,0.4); font-style: italic; }
-        .task-note-hint {
-          font-size: 0.62rem; color: rgba(138,154,158,0.45);
-          padding: 0 1.1rem 0.55rem; letter-spacing: 0.08em;
-        }
+    .check-box {
+      width: 24px; height: 24px; flex-shrink: 0;
+      border: 1.5px solid rgba(74,143,168,0.45); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 600; color: white;
+      transition: all 0.22s ease;
+      background: rgba(255,255,255,0.04);
+    }
+    .check-box.checked {
+      background: linear-gradient(135deg, #4caf50, #66bb6a);
+      border-color: #4caf50;
+      box-shadow: 0 0 12px rgba(76,175,80,0.4);
+    }
 
-        /* ─── CONFETTI ─── */
-        .confetti-dot {
-          position: fixed; pointer-events: none; z-index: 9999;
-          border-radius: 2px;
-        }
+    .item-text {
+      flex: 1; font-size: 0.9rem; color: rgba(253,249,242,0.85);
+      font-weight: 300; line-height: 1.3;
+    }
+    .checklist li.checked .item-text { opacity: 0.38; text-decoration: line-through; }
 
-        /* ─── KEYFRAMES ─── */
-        @keyframes fadeDown { from { opacity:0; transform:translateY(-14px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+    .item-priority {
+      font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 500; flex-shrink: 0;
+    }
+    .p-Alta  { background: rgba(196,134,122,0.2); color: var(--rose-lt); border: 1px solid rgba(196,134,122,0.3); }
+    .p-Media { background: rgba(201,169,110,0.18); color: var(--gold-lt); border: 1px solid rgba(201,169,110,0.28); }
+    .p-Baja  { background: rgba(74,143,168,0.15); color: var(--ocean-lt); border: 1px solid rgba(74,143,168,0.24); }
 
-        @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
-        }
+    .task-note-btn {
+      background: transparent; border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(253,249,242,0.42); border-radius: 6px;
+      font-size: 0.66rem; padding: 0.3rem 0.7rem;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      transition: all var(--transition); flex-shrink: 0;
+      touch-action: manipulation; min-width: 52px; min-height: 30px;
+    }
+    .task-note-btn:hover { background: rgba(255,255,255,0.09); color: var(--cream); border-color: rgba(255,255,255,0.26); }
+    .task-note-btn.has-note { color: var(--gold-lt); border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.1); }
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 600px) {
-          .guest-table th:nth-child(3), .guest-table td:nth-child(3) { display:none; }
-          .budget-grid { grid-template-columns: 1fr 1fr; }
-          .section-body.open .section-body-inner { padding: 1.2rem 1.2rem 1.8rem; }
-        }
-        @media (max-width: 400px) {
-          .budget-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .task-note-area {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.32s ease;
+      border-top: 1px solid transparent;
+    }
+    .task-note-area.open { max-height: 160px; border-top-color: rgba(255,255,255,0.07); }
+    .task-note-area textarea {
+      width: 100%; padding: 0.75rem 1rem; resize: none; display: block;
+      background: rgba(255,255,255,0.04); border: none; outline: none;
+      font-family: 'Jost', sans-serif; font-size: 0.85rem;
+      color: rgba(253,249,242,0.8); line-height: 1.55; height: 72px;
+    }
+    .task-note-area textarea::placeholder { color: rgba(138,154,158,0.38); font-style: italic; }
+    .task-note-hint {
+      font-size: 0.6rem; color: rgba(138,154,158,0.4);
+      padding: 0 1rem 0.5rem; letter-spacing: 0.08em;
+    }
+
+    /* ═══════════════════════════════════════════════
+       FORMS & INPUTS
+    ═══════════════════════════════════════════════ */
+    .glass-input {
+      padding: 0.72rem 1rem; border: 1px solid rgba(255,255,255,0.13);
+      border-radius: var(--radius-sm); font-family: 'Jost', sans-serif;
+      font-size: 0.88rem; background: rgba(255,255,255,0.07);
+      color: var(--cream); outline: none;
+      transition: all var(--transition); width: 100%;
+      min-height: 44px;
+    }
+    .glass-input::placeholder { color: rgba(138,154,158,0.55); }
+    .glass-input:focus { border-color: rgba(201,169,110,0.5); background: rgba(255,255,255,0.11); box-shadow: 0 0 0 3px rgba(201,169,110,0.1); }
+
+    .guest-controls { display: flex; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .guest-name-input { flex: 1; min-width: 140px; }
+
+    .guest-stats { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .stat-pill {
+      display: flex; align-items: center; gap: 0.45rem; font-size: 0.76rem;
+      color: rgba(253,249,242,0.65); padding: 0.3rem 0.85rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dot-confirmado { background: #4caf50; box-shadow: 0 0 6px rgba(76,175,80,0.5); }
+    .dot-pendiente  { background: #ffc107; box-shadow: 0 0 6px rgba(255,193,7,0.5); }
+    .dot-declinado  { background: #ef5350; box-shadow: 0 0 6px rgba(239,83,80,0.5); }
+
+    /* ═══════════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════════ */
+    .btn {
+      padding: 0.72rem 1.5rem; min-height: 44px;
+      background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
+      color: var(--cream); border: none; border-radius: var(--radius-sm);
+      font-family: 'Jost', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em;
+      text-transform: uppercase; cursor: pointer; white-space: nowrap;
+      transition: all var(--transition); box-shadow: 0 4px 18px rgba(74,143,168,0.28);
+      touch-action: manipulation;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(74,143,168,0.45); background: linear-gradient(135deg, var(--ocean-mid), var(--ocean)); }
+    .btn:active { transform: translateY(0); box-shadow: none; }
+
+    .btn-sm {
+      padding: 0.3rem 0.8rem; min-height: 34px; font-size: 0.68rem;
+      background: transparent; color: var(--rose-lt);
+      border: 1px solid rgba(196,134,122,0.3); border-radius: 5px;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      transition: all var(--transition); touch-action: manipulation;
+    }
+    .btn-sm:hover { background: rgba(196,134,122,0.2); border-color: rgba(196,134,122,0.55); }
+
+    /* ═══════════════════════════════════════════════
+       GUEST TABLE
+    ═══════════════════════════════════════════════ */
+    .guest-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .guest-table th {
+      text-align: left; padding: 0.6rem 0.85rem; font-weight: 400;
+      font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--ocean-lt); opacity: 0.6; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .guest-table td { padding: 0.72rem 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(253,249,242,0.72); vertical-align: middle; }
+    .guest-table tbody tr { transition: background var(--transition); }
+    .guest-table tbody tr:hover td { background: rgba(74,143,168,0.07); }
+
+    /* ═══════════════════════════════════════════════
+       BUDGET
+    ═══════════════════════════════════════════════ */
+    .budget-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 0.85rem; margin-bottom: 1.2rem; }
+
+    .budget-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm); padding: 1rem 1.1rem;
+      transition: all var(--transition);
+    }
+    .budget-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(201,169,110,0.28); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .budget-cat { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ocean-lt); opacity: 0.62; margin-bottom: 0.5rem; }
+    .budget-amount { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--cream); cursor: pointer; border-bottom: 1px dashed transparent; transition: all 0.2s; display: inline-block; }
+    .budget-amount:hover { border-bottom-color: rgba(201,169,110,0.5); color: var(--gold-lt); }
+    .budget-amount-edit { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--cream); border: 1px solid var(--gold); border-radius: 4px; padding: 0.1rem 0.5rem; width: 140px; outline: none; background: rgba(201,169,110,0.12); }
+    .budget-spent-row { display: flex; align-items: baseline; gap: 0.4rem; margin: 0.35rem 0; }
+    .budget-spent-label { font-size: 0.65rem; color: var(--ocean-lt); opacity: 0.62; }
+    .budget-spent-val { font-size: 0.86rem; color: var(--ocean-lt); cursor: pointer; border-bottom: 1px dashed transparent; transition: all 0.2s; }
+    .budget-spent-val:hover { border-bottom-color: rgba(74,143,168,0.5); opacity: 1; }
+    .budget-bar { margin-top: 0.55rem; height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+    .budget-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ocean-mid), var(--gold)); transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+    .budget-fill.over { background: linear-gradient(90deg, var(--rose), #e8a0a0); }
+    .budget-sub { font-size: 0.62rem; color: rgba(138,154,158,0.55); margin-top: 0.3rem; }
+    .budget-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 1.3rem; background: rgba(10,30,44,0.55); backdrop-filter: blur(12px);
+      border-radius: var(--radius-sm); border: 1px solid rgba(201,169,110,0.2);
+    }
+    .budget-total-label { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ocean-lt); opacity: 0.72; }
+    .budget-total-sub { font-size: 0.57rem; color: var(--ocean-lt); opacity: 0.42; letter-spacing: 0.06em; margin-top: 0.18rem; }
+    .budget-total-amt { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--gold); text-shadow: 0 0 20px rgba(201,169,110,0.3); }
+    .budget-hint { font-size: 0.62rem; color: rgba(138,154,158,0.48); margin-top: 0.8rem; font-style: italic; }
+
+    /* ═══════════════════════════════════════════════
+       TIMELINE
+    ═══════════════════════════════════════════════ */
+    .timeline { position: relative; padding-left: 1.8rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 5px; top: 4px; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--ocean), rgba(201,169,110,0.32), transparent);
+    }
+    .tl-item { position: relative; margin-bottom: 1.6rem; }
+    .tl-dot {
+      position: absolute; left: -2.1rem; top: 0.26rem;
+      width: 11px; height: 11px; border-radius: 50%;
+      border: 2px solid rgba(74,143,168,0.52); background: rgba(10,30,44,0.8); transition: all 0.3s;
+    }
+    .tl-dot.done  { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(201,169,110,0.5); }
+    .tl-dot.today { background: var(--rose); border-color: var(--rose); animation: todayPulse 2.2s ease-in-out infinite; }
+    @keyframes todayPulse {
+      0%,100% { box-shadow: 0 0 0 3px rgba(196,134,122,0.2); }
+      50%     { box-shadow: 0 0 0 8px rgba(196,134,122,0.08), 0 0 18px rgba(196,134,122,0.3); }
+    }
+    .tl-time  { font-size: 0.64rem; letter-spacing: 0.2em; color: var(--ocean-lt); text-transform: uppercase; margin-bottom: 0.15rem; opacity: 0.7; }
+    .tl-title { font-size: 0.9rem; color: var(--cream); margin-bottom: 0.1rem; font-weight: 400; opacity: 0.88; }
+    .tl-title.done { opacity: 0.4; text-decoration: line-through; }
+    .tl-desc  { font-size: 0.78rem; color: rgba(138,154,158,0.62); }
+
+    /* ═══════════════════════════════════════════════
+       NOTES
+    ═══════════════════════════════════════════════ */
+    .notes-area {
+      width: 100%; min-height: 130px; padding: 1rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.11); border-radius: var(--radius-sm);
+      font-family: 'Jost', sans-serif; font-size: 0.9rem; color: rgba(253,249,242,0.82);
+      background: rgba(255,255,255,0.06); outline: none; resize: vertical; line-height: 1.7;
+      transition: all var(--transition);
+    }
+    .notes-area::placeholder { color: rgba(138,154,158,0.42); font-style: italic; }
+    .notes-area:focus { border-color: rgba(74,143,168,0.4); background: rgba(255,255,255,0.09); box-shadow: 0 0 0 3px rgba(74,143,168,0.1); }
+    .notes-hint { font-size: 0.66rem; color: rgba(138,154,158,0.48); margin-top: 0.55rem; }
+
+    /* ═══════════════════════════════════════════════
+       CONFETTI
+    ═══════════════════════════════════════════════ */
+    .confetti-dot { position: fixed; pointer-events: none; z-index: 9999; border-radius: 2px; }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .guest-table th:nth-child(3), .guest-table td:nth-child(3) { display: none; }
+      .budget-grid { grid-template-columns: 1fr 1fr; }
+      .guest-controls { flex-direction: column; }
+      .guest-controls .btn { align-self: flex-start; }
+      .item-priority { display: none; }
+    }
+    @media (max-width: 400px) {
+      .budget-grid { grid-template-columns: 1fr; }
+      .h-names { font-size: 1.15rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="bg-ocean"></div>
+<!-- ── BACKGROUND ── -->
+<div class="bg-base"></div>
 <div class="bg-photo" id="bg-photo"></div>
-<div class="bg-overlay"></div>
+<div class="bg-vignette"></div>
 <div id="bubbles"></div>
 
-<!-- Waves -->
-<div class="waves">
-  <div class="wave wave-1">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,55 C240,100 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z" fill="rgba(74,143,168,0.55)"/>
+<!-- ── ANIMATED WAVES ── -->
+<div class="wave-scene">
+  <div class="wave-layer">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,100 C180,155 360,50 540,100 C720,150 900,45 1080,95 C1260,145 1380,65 1440,100 L1440,200 L0,200 Z" fill="rgba(74,143,168,0.6)"/>
     </svg>
   </div>
-  <div class="wave wave-2">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C360,80 720,8 1080,45 C1260,62 1360,25 1440,40 L1440,120 L0,120 Z" fill="rgba(74,143,168,0.38)"/>
+  <div class="wave-layer">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 C240,130 480,25 720,78 C960,130 1200,22 1440,75 L1440,200 L0,200 Z" fill="rgba(45,122,149,0.45)"/>
     </svg>
   </div>
-  <div class="wave wave-3">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,75 C360,20 720,100 1080,48 C1260,22 1380,78 1440,68 L1440,120 L0,120 Z" fill="rgba(201,169,110,0.18)"/>
+  <div class="wave-layer">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,120 C300,60 600,160 900,105 C1100,65 1300,135 1440,110 L1440,200 L0,200 Z" fill="rgba(30,77,94,0.55)"/>
+    </svg>
+  </div>
+  <div class="wave-layer">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,140 C200,90 400,170 600,130 C800,90 1000,155 1200,125 C1330,105 1390,145 1440,135 L1440,200 L0,200 Z" fill="rgba(201,169,110,0.2)"/>
     </svg>
   </div>
 </div>
 
+<!-- ── SYNC ── -->
 <div id="sync"></div>
 
 <!-- ════════════════════ HEADER ════════════════════ -->
 <header>
   <div id="sparkles"></div>
 
-  <div class="h-ornament">✦ Boda Temática Playa · Colombia ✦</div>
+  <p class="h-ornament">✦ Boda Temática Playa · Colombia ✦</p>
 
   <h1 class="hero-title">Nuestra <span class="glow">Boda</span></h1>
 
   <div class="h-names">
-    Xiomara Mendieta <span class="amp">&</span> Ivan Vera
+    Xiomara Mendieta <span class="amp">&amp;</span> Ivan Vera
   </div>
 
-  <div class="h-sub">Colombia &nbsp;·&nbsp; 25–30 invitados &nbsp;·&nbsp; Celebración íntima frente al mar</div>
+  <p class="h-sub">Colombia &nbsp;·&nbsp; 25–30 invitados &nbsp;·&nbsp; Celebración íntima frente al mar</p>
 
-  <div class="ornament-row">
-    <span>✦ · · · ✦</span>
-  </div>
-
-
+  <div class="h-divider"><span>✦ · · · ✦</span></div>
 
   <div class="scroll-hint" onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})">
     <span>Explorar</span>
@@ -501,14 +695,14 @@
 
   <div class="divider"><span>🌊</span></div>
 
-  <!-- CHECKLIST -->
+  <!-- ── CHECKLIST ── -->
   <div class="section">
-    <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-header open" onclick="toggleSection(this)" aria-expanded="true">
       <div class="section-title">
         <div class="section-icon">✓</div>
         <span class="section-name">Lista de tareas</span>
       </div>
-      <div style="display:flex;gap:.6rem;align-items:center">
+      <div class="section-right">
         <span class="section-badge warn" id="task-badge">0 / 20</span>
         <div class="chevron open">▾</div>
       </div>
@@ -520,14 +714,14 @@
     </div>
   </div>
 
-  <!-- GUESTS -->
+  <!-- ── GUESTS ── -->
   <div class="section">
-    <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
       <div class="section-title">
         <div class="section-icon">♡</div>
         <span class="section-name">Invitados</span>
       </div>
-      <div style="display:flex;gap:.6rem;align-items:center">
+      <div class="section-right">
         <span class="section-badge" id="guest-badge">0 confirmados</span>
         <div class="chevron">▾</div>
       </div>
@@ -537,7 +731,7 @@
         <div class="guest-controls">
           <input class="glass-input guest-name-input" id="g-name" placeholder="Nombre del invitado" onkeydown="if(event.key==='Enter')addGuest()">
           <input class="glass-input" id="g-rel" placeholder="Relación" style="width:130px" onkeydown="if(event.key==='Enter')addGuest()">
-          <select class="glass-input" id="g-status">
+          <select class="glass-input" id="g-status" style="width:140px">
             <option value="pendiente">Pendiente</option>
             <option value="confirmado">Confirmado</option>
             <option value="declinado">Declinado</option>
@@ -552,21 +746,21 @@
         <table class="guest-table">
           <thead><tr><th>Nombre</th><th>Estado</th><th>Relación</th><th></th></tr></thead>
           <tbody id="guest-body">
-            <tr><td colspan="4" style="color:var(--light-text);font-size:.85rem;text-align:center;padding:1.5rem;opacity:.45">Añade tus primeros invitados 🌊</td></tr>
+            <tr><td colspan="4" style="color:var(--light-text);font-size:.85rem;text-align:center;padding:1.5rem;opacity:.42">Añade tus primeros invitados 🌊</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- BUDGET -->
+  <!-- ── BUDGET ── -->
   <div class="section">
-    <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
       <div class="section-title">
         <div class="section-icon">◈</div>
         <span class="section-name">Presupuesto</span>
       </div>
-      <div style="display:flex;gap:.6rem;align-items:center">
+      <div class="section-right">
         <span class="section-badge" id="budget-badge">COP</span>
         <div class="chevron">▾</div>
       </div>
@@ -581,19 +775,19 @@
           </div>
           <span class="budget-total-amt" id="budget-total">$ 0</span>
         </div>
-        <div class="budget-hint">💡 Doble clic en cualquier monto para editarlo</div>
+        <p class="budget-hint">Doble clic en cualquier monto para editarlo</p>
       </div>
     </div>
   </div>
 
-  <!-- TIMELINE -->
+  <!-- ── TIMELINE ── -->
   <div class="section">
-    <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
       <div class="section-title">
         <div class="section-icon">◷</div>
         <span class="section-name">Cronograma</span>
       </div>
-      <div style="display:flex;gap:.6rem;align-items:center">
+      <div class="section-right">
         <span class="section-badge">12 hitos</span>
         <div class="chevron">▾</div>
       </div>
@@ -605,14 +799,14 @@
     </div>
   </div>
 
-  <!-- NOTES -->
+  <!-- ── NOTES ── -->
   <div class="section">
-    <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
       <div class="section-title">
         <div class="section-icon">✎</div>
         <span class="section-name">Notas y detalles</span>
       </div>
-      <div style="display:flex;gap:.6rem;align-items:center">
+      <div class="section-right">
         <span class="section-badge">Ideas</span>
         <div class="chevron">▾</div>
       </div>
@@ -620,12 +814,12 @@
     <div class="section-body">
       <div class="section-body-inner">
         <textarea class="notes-area" id="notes" placeholder="Escribe aquí ideas, detalles de decoración playera, menú tentativo, música favorita…&#10;&#10;Ejemplo: Ceremonia al atardecer en la arena · Centros de mesa con conchas · Cóctel tropical · Marimba en vivo"></textarea>
-        <div class="notes-hint">☁ Tus notas se sincronizan automáticamente en todos los dispositivos</div>
+        <p class="notes-hint">☁ Tus notas se sincronizan automáticamente en todos los dispositivos</p>
       </div>
     </div>
   </div>
 
-</div>
+</div><!-- /container -->
 
 <!-- ════════════════════ SCRIPT ════════════════════ -->
 <script type="module">
@@ -651,17 +845,16 @@
   /* ── BUBBLES ── */
   (() => {
     const wrap = document.getElementById('bubbles');
-    for (let i = 0; i < 22; i++) {
+    for (let i = 0; i < 20; i++) {
       const b = document.createElement('div');
       b.className = 'bubble';
-      const sz   = Math.random() * 32 + 6;
-      const drift = (Math.random() - 0.5) * 90;
+      const sz = Math.random() * 30 + 5;
       b.style.cssText = `
         width:${sz}px; height:${sz}px;
         left:${Math.random()*100}%;
         animation-duration:${Math.random()*18+10}s;
-        animation-delay:-${Math.random()*20}s;
-        --drift:${drift}px;
+        animation-delay:-${Math.random()*22}s;
+        --drift:${(Math.random()-.5)*80}px;
       `;
       wrap.appendChild(b);
     }
@@ -670,14 +863,14 @@
   /* ── SPARKLES ── */
   (() => {
     const wrap = document.getElementById('sparkles');
-    const chars = ['✦','✧','·','⋆','✺','∗'];
-    for (let i = 0; i < 24; i++) {
+    const chars = ['✦','✧','·','⋆','∗','✺'];
+    for (let i = 0; i < 22; i++) {
       const s = document.createElement('div');
       s.className = 'sparkle';
       s.textContent = chars[Math.floor(Math.random()*chars.length)];
       s.style.cssText = `
         left:${Math.random()*100}%; top:${Math.random()*100}%;
-        font-size:${Math.random()*10+5}px;
+        font-size:${Math.random()*10+4}px;
         animation-delay:${Math.random()*6}s;
         animation-duration:${Math.random()*3+2}s;
       `;
@@ -687,20 +880,35 @@
 
   /* ── PARALLAX ── */
   const bgPhoto = document.getElementById('bg-photo');
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    bgPhoto.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        bgPhoto.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
   }, { passive: true });
 
+  /* ── SECTION TOGGLE ── */
+  window.toggleSection = header => {
+    const body    = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    const open    = body.classList.toggle('open');
+    header.classList.toggle('open', open);
+    chevron.classList.toggle('open', open);
+    header.setAttribute('aria-expanded', open);
+  };
+
   /* ── INTERSECTION OBSERVER ── */
-  const observer = new IntersectionObserver(entries => {
+  const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.06 });
   document.querySelectorAll('.section').forEach((s, i) => {
     s.style.transitionDelay = `${i * 0.07}s`;
-    observer.observe(s);
+    io.observe(s);
   });
-
-
 
   /* ── CONFETTI ── */
   function launchConfetti(cx, cy) {
@@ -709,12 +917,9 @@
       const el = document.createElement('div');
       el.className = 'confetti-dot';
       const sz = Math.random() * 9 + 4;
-      el.style.cssText = `
-        left:${cx}px; top:${cy}px;
-        width:${sz}px; height:${sz}px;
+      el.style.cssText = `left:${cx}px;top:${cy}px;width:${sz}px;height:${sz}px;
         background:${palette[Math.floor(Math.random()*palette.length)]};
-        border-radius:${Math.random()>.5?'50%':'2px'};
-      `;
+        border-radius:${Math.random()>.5?'50%':'2px'};`;
       document.body.appendChild(el);
       el.animate([
         { transform:'translate(0,0) rotate(0deg) scale(1)', opacity:1 },
@@ -728,13 +933,13 @@
   function showSync(state, msg) {
     const el = document.getElementById('sync');
     el.textContent = msg; el.className = `show ${state}`;
-    if (state === 'saved') setTimeout(() => { el.className = ''; }, 2200);
+    if (state === 'saved') setTimeout(() => { el.className = ''; }, 2400);
   }
 
   /* ── SAVE ── */
   async function save() {
     if (isLoading) return;
-    showSync('saving','💾 Guardando…');
+    showSync('saving', '💾 Guardando…');
     const payload = {
       tasks: TASKS.map(t => ({ done: t.done, note: t.note || '' })),
       guests,
@@ -742,14 +947,12 @@
       budget: BUDGET.map(b => ({ est: b.est, spent: b.spent })),
       updatedAt: Date.now()
     };
-    // Always save to localStorage as backup
     try { localStorage.setItem('boda-data', JSON.stringify(payload)); } catch(e) {}
     try {
       await setDoc(DOC, payload);
-      showSync('saved','✓ Guardado');
+      showSync('saved', '✓ Guardado');
     } catch(e) {
-      // Firebase failed but localStorage worked
-      showSync('saved','✓ Guardado localmente');
+      showSync('saved', '✓ Guardado localmente');
       console.warn('Firebase error:', e.code, e.message);
     }
   }
@@ -761,26 +964,26 @@
 
   /* ── DATA ── */
   const TASKS = [
-    { text:"Fijar la fecha y el lugar",             priority:"alta",  done:false, note:"" },
-    { text:"Establecer presupuesto total",           priority:"alta",  done:false, note:"" },
-    { text:"Contratar catering / restaurante",       priority:"alta",  done:false, note:"" },
-    { text:"Enviar invitaciones (físicas o digitales)", priority:"alta", done:false, note:"" },
-    { text:"Confirmar número de asistentes",         priority:"alta",  done:false, note:"" },
-    { text:"Reservar alojamiento para novios",       priority:"media", done:false, note:"" },
-    { text:"Contratar fotógrafo / videógrafo",       priority:"alta",  done:false, note:"" },
-    { text:"Elegir traje / vestido de novia",        priority:"alta",  done:false, note:"" },
-    { text:"Diseñar la decoración floral",           priority:"media", done:false, note:"" },
-    { text:"Seleccionar música para la ceremonia",   priority:"media", done:false, note:"" },
-    { text:"Preparar menú y confirmar alergias",     priority:"alta",  done:false, note:"" },
-    { text:"Coordinar transporte para invitados",    priority:"baja",  done:false, note:"" },
-    { text:"Encargar tarta nupcial",                 priority:"media", done:false, note:"" },
-    { text:"Comprar detalles / recuerdos",           priority:"baja",  done:false, note:"" },
-    { text:"Preparar discurso o votos",              priority:"media", done:false, note:"" },
-    { text:"Planificar mesa de regalo o lista",      priority:"baja",  done:false, note:"" },
-    { text:"Confirmar seating / disposición mesas",  priority:"media", done:false, note:"" },
-    { text:"Ensayo de la ceremonia",                 priority:"media", done:false, note:"" },
-    { text:"Pago final a proveedores",               priority:"alta",  done:false, note:"" },
-    { text:"Preparar sobre de propinas",             priority:"baja",  done:false, note:"" },
+    { text:"Fijar la fecha y el lugar",                 priority:"alta",  done:false, note:"" },
+    { text:"Establecer presupuesto total",               priority:"alta",  done:false, note:"" },
+    { text:"Contratar catering / restaurante",           priority:"alta",  done:false, note:"" },
+    { text:"Enviar invitaciones (físicas o digitales)",  priority:"alta",  done:false, note:"" },
+    { text:"Confirmar número de asistentes",             priority:"alta",  done:false, note:"" },
+    { text:"Reservar alojamiento para novios",           priority:"media", done:false, note:"" },
+    { text:"Contratar fotógrafo / videógrafo",           priority:"alta",  done:false, note:"" },
+    { text:"Elegir traje / vestido de novia",            priority:"alta",  done:false, note:"" },
+    { text:"Diseñar la decoración floral",               priority:"media", done:false, note:"" },
+    { text:"Seleccionar música para la ceremonia",       priority:"media", done:false, note:"" },
+    { text:"Preparar menú y confirmar alergias",         priority:"alta",  done:false, note:"" },
+    { text:"Coordinar transporte para invitados",        priority:"baja",  done:false, note:"" },
+    { text:"Encargar tarta nupcial",                     priority:"media", done:false, note:"" },
+    { text:"Comprar detalles / recuerdos",               priority:"baja",  done:false, note:"" },
+    { text:"Preparar discurso o votos",                  priority:"media", done:false, note:"" },
+    { text:"Planificar mesa de regalo o lista",          priority:"baja",  done:false, note:"" },
+    { text:"Confirmar seating / disposición mesas",      priority:"media", done:false, note:"" },
+    { text:"Ensayo de la ceremonia",                     priority:"media", done:false, note:"" },
+    { text:"Pago final a proveedores",                   priority:"alta",  done:false, note:"" },
+    { text:"Preparar sobre de propinas",                 priority:"baja",  done:false, note:"" },
   ];
 
   let BUDGET = [
@@ -797,18 +1000,18 @@
   ];
 
   const TIMELINE = [
-    { time:"12 meses antes",  title:"Fecha y lugar",        desc:"Reservar espacio y fijar la fecha.",                          done:true  },
-    { time:"10 meses antes",  title:"Presupuesto y equipo", desc:"Decidir presupuesto. Contratar fotógrafo.",                   done:true  },
-    { time:"8 meses antes",   title:"Catering y menú",      desc:"Visitar caterings, hacer degustación.",                       done:false },
-    { time:"6 meses antes",   title:"Invitaciones",          desc:"Enviar invitaciones. Abrir lista de regalos.",                done:false },
-    { time:"4 meses antes",   title:"Vestuario",             desc:"Primeras pruebas de vestido/traje.",                          done:false },
-    { time:"3 meses antes",   title:"Decoración playa",      desc:"Confirmar flores tropicales, música y detalles.",             done:false },
-    { time:"2 meses antes",   title:"Confirmaciones",        desc:"Confirmar asistencia y recoger alergias.",                    done:false, today:true },
-    { time:"6 semanas antes", title:"Seating plan",          desc:"Distribuir mesas según confirmados.",                         done:false },
-    { time:"2 semanas antes", title:"Ensayo",                desc:"Ensayo de ceremonia con familia cercana.",                    done:false },
-    { time:"1 semana antes",  title:"Pagos finales",         desc:"Liquidar proveedores. Preparar propinas.",                    done:false },
-    { time:"El gran día 🌊",  title:"¡Tu boda en la playa! ♡", desc:"Disfruta cada momento al borde del mar.",                done:false },
-    { time:"Post-boda",       title:"Agradecimientos",       desc:"Enviar notas de agradecimiento a invitados.",                 done:false },
+    { time:"12 meses antes",  title:"Fecha y lugar",           desc:"Reservar espacio y fijar la fecha.",                done:true  },
+    { time:"10 meses antes",  title:"Presupuesto y equipo",    desc:"Decidir presupuesto. Contratar fotógrafo.",          done:true  },
+    { time:"8 meses antes",   title:"Catering y menú",         desc:"Visitar caterings, hacer degustación.",               done:false },
+    { time:"6 meses antes",   title:"Invitaciones",             desc:"Enviar invitaciones. Abrir lista de regalos.",       done:false },
+    { time:"4 meses antes",   title:"Vestuario",                desc:"Primeras pruebas de vestido/traje.",                 done:false },
+    { time:"3 meses antes",   title:"Decoración playa",        desc:"Confirmar flores tropicales, música y detalles.",    done:false },
+    { time:"2 meses antes",   title:"Confirmaciones",           desc:"Confirmar asistencia y recoger alergias.",           done:false, today:true },
+    { time:"6 semanas antes", title:"Seating plan",             desc:"Distribuir mesas según confirmados.",                done:false },
+    { time:"2 semanas antes", title:"Ensayo",                   desc:"Ensayo de ceremonia con familia cercana.",           done:false },
+    { time:"1 semana antes",  title:"Pagos finales",            desc:"Liquidar proveedores. Preparar propinas.",           done:false },
+    { time:"El gran día 🌊",  title:"¡Tu boda en la playa! ♡", desc:"Disfruta cada momento al borde del mar.",            done:false },
+    { time:"Post-boda",       title:"Agradecimientos",          desc:"Enviar notas de agradecimiento a invitados.",        done:false },
   ];
 
   /* ── INIT ── */
@@ -828,7 +1031,7 @@
           if (BUDGET[i]) { BUDGET[i].est = b.est; BUDGET[i].spent = b.spent; }
         });
       }
-    } catch(e) { console.error(e); }
+    } catch(e) { console.warn('Init error:', e); }
 
     isLoading = false;
     renderTasks(); updateProgress(); renderGuests(); renderBudget(); renderTimeline();
@@ -864,18 +1067,19 @@
       li.className = t.done ? 'checked' : '';
       const hasNote = !!(t.note && t.note.trim());
       li.innerHTML = `
-        <div class="task-row" id="tr-${i}">
+        <div class="task-row" id="tr-${i}" role="button" tabindex="0">
           <div class="check-box ${t.done?'checked':''}" id="cb-${i}">${t.done?'✓':''}</div>
           <span class="item-text">${t.text}</span>
-          <span class="item-priority p-${t.priority}">${t.priority[0].toUpperCase()+t.priority.slice(1)}</span>
-          <button class="task-note-btn ${hasNote?'has-note':''}" id="nb-${i}">✎ nota</button>
+          <span class="item-priority p-${t.priority[0].toUpperCase()+t.priority.slice(1)}">${t.priority[0].toUpperCase()+t.priority.slice(1)}</span>
+          <button class="task-note-btn ${hasNote?'has-note':''}" id="nb-${i}" aria-label="Nota">✎ nota</button>
         </div>
         <div class="task-note-area ${hasNote?'open':''}" id="na-${i}">
           <textarea placeholder="Añade detalles… ej: Playa de Santa Marta, 15 de diciembre" id="nt-${i}">${t.note||''}</textarea>
-          <div class="task-note-hint">Guardado automáticamente ☁</div>
+          <div class="task-note-hint">☁ Guardado automáticamente</div>
         </div>`;
 
-      li.querySelector(`#tr-${i}`).addEventListener('click', e => {
+      const row = li.querySelector(`#tr-${i}`);
+      row.addEventListener('click', e => {
         if (e.target.closest(`#nb-${i}`)) return;
         const wasChecked = TASKS[i].done;
         TASKS[i].done = !TASKS[i].done;
@@ -884,6 +1088,9 @@
           launchConfetti(r.left + r.width/2, r.top + r.height/2 + window.scrollY);
         }
         renderTasks(); updateProgress(); debouncedSave();
+      });
+      row.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); }
       });
 
       li.querySelector(`#nb-${i}`).addEventListener('click', e => {
@@ -916,8 +1123,8 @@
 
   /* ── GUESTS ── */
   window.addGuest = () => {
-    const name = document.getElementById('g-name').value.trim();
-    const rel  = document.getElementById('g-rel').value.trim();
+    const name   = document.getElementById('g-name').value.trim();
+    const rel    = document.getElementById('g-rel').value.trim();
     const status = document.getElementById('g-status').value;
     if (!name) return;
     guests.push({ name, rel, status });
@@ -925,86 +1132,85 @@
     document.getElementById('g-rel').value  = '';
     renderGuests(); save();
   };
-  window.removeGuest = i => { guests.splice(i,1); renderGuests(); save(); };
+  window.removeGuest  = i => { guests.splice(i,1); renderGuests(); save(); };
   window.changeStatus = (i,v) => { guests[i].status=v; renderGuests(); save(); };
 
   function renderGuests() {
     const tbody = document.getElementById('guest-body');
     if (!guests.length) {
-      tbody.innerHTML = '<tr><td colspan="4" style="color:var(--light-text);font-size:.85rem;text-align:center;padding:1.5rem;opacity:.45">Añade tus primeros invitados 🌊</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="4" style="color:var(--light-text);font-size:.85rem;text-align:center;padding:1.5rem;opacity:.42">Añade tus primeros invitados 🌊</td></tr>';
     } else {
       tbody.innerHTML = guests.map((g,i) => `
         <tr>
-          <td><span style="color:var(--cream)">${g.name}</span></td>
-          <td><select onchange="changeStatus(${i},this.value)" style="border:none;background:transparent;font-family:Jost,sans-serif;font-size:.82rem;color:rgba(253,249,242,.72);cursor:pointer;outline:none">
-            <option value="pendiente"  ${g.status==='pendiente'?'selected':''}>🟡 Pendiente</option>
-            <option value="confirmado" ${g.status==='confirmado'?'selected':''}>🟢 Confirmado</option>
-            <option value="declinado"  ${g.status==='declinado'?'selected':''}>🔴 Declinado</option>
-          </select></td>
-          <td style="color:rgba(138,154,158,.65)">${g.rel||'—'}</td>
-          <td><button class="btn-sm" onclick="removeGuest(${i})">✕</button></td>
+          <td>${g.name}</td>
+          <td>
+            <select class="glass-input" style="padding:.35rem .65rem;font-size:.78rem;width:auto;min-height:36px" onchange="changeStatus(${i},this.value)">
+              <option value="pendiente"  ${g.status==='pendiente' ?'selected':''}>Pendiente</option>
+              <option value="confirmado" ${g.status==='confirmado'?'selected':''}>Confirmado</option>
+              <option value="declinado"  ${g.status==='declinado' ?'selected':''}>Declinado</option>
+            </select>
+          </td>
+          <td>${g.rel||'—'}</td>
+          <td><button class="btn-sm" onclick="removeGuest(${i})">Quitar</button></td>
         </tr>`).join('');
     }
     const conf = guests.filter(g=>g.status==='confirmado').length;
     const pend = guests.filter(g=>g.status==='pendiente').length;
     const dec  = guests.filter(g=>g.status==='declinado').length;
-    document.getElementById('cnt-conf').textContent  = conf+' confirmados';
-    document.getElementById('cnt-pend').textContent  = pend+' pendientes';
-    document.getElementById('cnt-dec').textContent   = dec +' declinados';
-    document.getElementById('guest-badge').textContent = conf+' confirmados';
+    document.getElementById('cnt-conf').textContent = conf + ' confirmados';
+    document.getElementById('cnt-pend').textContent = pend + ' pendientes';
+    document.getElementById('cnt-dec').textContent  = dec  + ' declinados';
+    document.getElementById('guest-badge').textContent = conf + ' confirmados';
   }
 
   /* ── BUDGET ── */
   function renderBudget() {
-    const grid  = document.getElementById('budget-grid');
-    const total = BUDGET.reduce((a,b)=>a+b.est,0);
+    const grid = document.getElementById('budget-grid');
     grid.innerHTML = BUDGET.map((b,i) => {
-      const pct  = b.est>0 ? Math.min(100,Math.round(b.spent/b.est*100)) : 0;
-      const over = b.spent > b.est;
-      return `<div class="budget-card">
-        <div class="budget-cat">${b.cat}</div>
-        <span class="budget-amount" id="be-${i}" ondblclick="editBudget(${i},'est')">${fmt(b.est)}</span>
-        <div class="budget-spent-row">
-          <span class="budget-spent-label">Gastado:</span>
-          <span class="budget-spent-val" id="bs-${i}" ondblclick="editBudget(${i},'spent')">${fmt(b.spent)}</span>
-        </div>
-        <div class="budget-bar"><div class="budget-fill ${over?'over':''}" style="width:${pct}%"></div></div>
-        <div class="budget-sub">${pct}% ejecutado${over?' · ⚠ Sobrepaso':''}</div>
-      </div>`;
+      const pct = b.est > 0 ? Math.min(100, Math.round(b.spent/b.est*100)) : 0;
+      return `
+        <div class="budget-card">
+          <div class="budget-cat">${b.cat}</div>
+          <div class="budget-amount" ondblclick="editBudget(${i},'est')" title="Doble clic para editar">${fmt(b.est)}</div>
+          <div class="budget-spent-row">
+            <span class="budget-spent-label">Gastado:</span>
+            <span class="budget-spent-val" ondblclick="editBudget(${i},'spent')" title="Doble clic para editar">${fmt(b.spent)}</span>
+          </div>
+          <div class="budget-bar"><div class="budget-fill ${pct>100?'over':''}" style="width:${pct}%"></div></div>
+          <div class="budget-sub">${pct}% del presupuesto</div>
+        </div>`;
     }).join('');
+    const total = BUDGET.reduce((s,b) => s+b.est, 0);
     document.getElementById('budget-total').textContent = fmt(total);
+    document.getElementById('budget-badge').textContent = fmt(total);
   }
 
   window.editBudget = (i, field) => {
-    const id = field==='est'?`be-${i}`:`bs-${i}`;
-    const el = document.getElementById(id); if (!el) return;
-    const inp = document.createElement('input');
-    inp.type='number'; inp.className='budget-amount-edit'; inp.value=BUDGET[i][field]; inp.min=0;
-    el.replaceWith(inp); inp.focus(); inp.select();
-    const commit = () => { BUDGET[i][field]=parseInt(inp.value)||0; renderBudget(); debouncedSave(); };
+    const card = document.querySelectorAll('.budget-card')[i];
+    const selector = field === 'est' ? '.budget-amount' : '.budget-spent-val';
+    const span = card.querySelector(selector);
+    const cur  = BUDGET[i][field];
+    const inp  = document.createElement('input');
+    inp.type = 'number'; inp.className = 'budget-amount-edit';
+    inp.value = cur; span.replaceWith(inp); inp.focus(); inp.select();
+    const commit = () => {
+      BUDGET[i][field] = parseFloat(inp.value)||0;
+      renderBudget(); debouncedSave();
+    };
     inp.addEventListener('blur', commit);
-    inp.addEventListener('keydown', e => { if(e.key==='Enter')inp.blur(); if(e.key==='Escape')renderBudget(); });
+    inp.addEventListener('keydown', e => { if (e.key==='Enter'||e.key==='Escape') inp.blur(); });
   };
 
   /* ── TIMELINE ── */
   function renderTimeline() {
-    document.getElementById('timeline').innerHTML = TIMELINE.map(t=>`
+    document.getElementById('timeline').innerHTML = TIMELINE.map(item => `
       <div class="tl-item">
-        <div class="tl-dot ${t.done?'done':''} ${t.today?'today':''}"></div>
-        <div class="tl-time">${t.time}</div>
-        <div class="tl-title ${t.done?'done':''}">${t.title}</div>
-        <div class="tl-desc">${t.desc}</div>
+        <div class="tl-dot ${item.done?'done':''}${item.today?' today':''}"></div>
+        <div class="tl-time">${item.time}</div>
+        <div class="tl-title ${item.done?'done':''}">${item.title}</div>
+        <div class="tl-desc">${item.desc}</div>
       </div>`).join('');
   }
-
-  /* ── ACCORDION ── */
-  window.toggleSection = header => {
-    const body    = header.nextElementSibling;
-    const chevron = header.querySelector('.chevron');
-    const open    = body.classList.toggle('open');
-    header.classList.toggle('open', open);
-    chevron.classList.toggle('open', open);
-  };
 
   /* ── NOTES ── */
   document.getElementById('notes').addEventListener('input', debouncedSave);
