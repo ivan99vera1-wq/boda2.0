@@ -559,13 +559,13 @@
     authDomain: "boda-organizador.firebaseapp.com",
     projectId: "boda-organizador",
     storageBucket: "boda-organizador.appspot.com",
-    messagingSenderId: "810648232271",
-    appId: "1:810648232271:web:boda-organizador-default-rtdb"
+    messagingSenderId: "633667492358",
+    appId: "1:633667492358:web:a0edf9e59becf2b3f78187"
   };
 
   const app = initializeApp(firebaseConfig);
   const db  = getFirestore(app);
-  const DOC = doc(db, 'boda', 'xiomara-ivan');
+  const DOC = doc(db, 'boda', 'datos');
 
   let guests = [], isLoading = true, saveTimeout = null;
 
@@ -671,7 +671,7 @@
     } catch(e) {
       // Firebase failed but localStorage worked
       showSync('saved','✓ Guardado localmente');
-      console.warn('Firebase error (usando localStorage):', e);
+      console.warn('Firebase error:', e.code, e.message);
     }
   }
 
